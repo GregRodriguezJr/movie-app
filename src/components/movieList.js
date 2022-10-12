@@ -1,3 +1,4 @@
+import React from "react";
 
 const MovieList = (props) => {
     const baseImgUrl = "https://image.tmdb.org/t/p/w500";
