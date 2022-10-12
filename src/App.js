@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieList from './components/movieList';
 
@@ -67,8 +68,10 @@ const App = () => {
     },
   ]);
   return (
-    <div>
-      <MovieList movies = {movies} />
+    <div className='container-fluid'>
+      <div className="d-flex justify-content-start movie-app-row">
+        <MovieList movies = {movies} />
+      </div>
     </div>
   );
 }
