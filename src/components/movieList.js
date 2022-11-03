@@ -5,8 +5,9 @@ const MovieList = (props) => {
     return (
         <>
             {props.movies.map((movie, index) => (
-                <div className="m-3">
+                <div className="m-3 image-container">
                     <img src={baseImgUrl + movie.poster_path} />
+                    <div className="overlay d-flex align-items-center justify-content-center"></div>
                 </div>
             ))}
         </>

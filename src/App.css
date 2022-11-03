@@ -11,3 +11,14 @@ body {
 img {
   max-width: 250px;
 }
+
+.image-container {
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.image-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
