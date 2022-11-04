@@ -5,6 +5,7 @@ import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
 import AddFavorites from './components/AddFavorites';
+import RemoveFavorites from './components/RemoveFavorites';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -45,7 +46,7 @@ const App = () => {
             < MovieListHeading heading = {"Favorites"} />
         </div>
         <div className="d-flex justify-content-start movie-app-row">
-            < MovieList movies = {favorites} favComponent={AddFavorites} handleFavoritesClick={addFavoriteMovie} />
+            < MovieList movies = {favorites} favComponent={RemoveFavorites} handleFavoritesClick={addFavoriteMovie} />
         </div>
     </div>
   );
