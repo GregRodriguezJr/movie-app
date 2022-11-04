@@ -8,6 +8,7 @@ import AddFavorites from './components/AddFavorites';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
   const getSearchedMovies = async (searchValue) => {
@@ -25,16 +26,27 @@ const App = () => {
   useEffect(() => {
     getSearchedMovies(searchValue);
   }, [searchValue]);
+
+  const addFavoriteMovie = (movie) => {
+    const newFavoriteList = [...favorites, movie];
+    setFavorites(newFavoriteList);
+  }
   
   return (
     <div className='container-fluid'>
-      <div className='d-flex align-items-center justify-content-between my-3'>
-        < MovieListHeading heading = {"Movie App"} />
-        < SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-      </div>
-      <div className="d-flex justify-content-start movie-app-row">
-        < MovieList movies = {movies} favComponent={AddFavorites} />
-      </div>
+        <div className='d-flex align-items-center justify-content-between my-3'>
+            < MovieListHeading heading = {"Movie App"} />
+            < SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+        </div>
+        <div className="d-flex justify-content-start movie-app-row">
+            < MovieList movies = {movies} favComponent={AddFavorites} handleFavoritesClick={addFavoriteMovie} />
+        </div>
+        <div className='d-flex align-items-center justify-content-between my-3'>
+            < MovieListHeading heading = {"Favorites"} />
+        </div>
+        <div className="d-flex justify-content-start movie-app-row">
+            < MovieList movies = {favorites} favComponent={AddFavorites} handleFavoritesClick={addFavoriteMovie} />
+        </div>
     </div>
   );
 }

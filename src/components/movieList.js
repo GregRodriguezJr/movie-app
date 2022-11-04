@@ -8,7 +8,9 @@ return (
     {props.movies.map((movie, index) => (
         <div className="m-3 image-container">
             <img src={baseImgUrl + movie.poster_path} />
-            <div className="overlay d-flex align-items-center justify-content-center">
+            <div 
+				onClick={() => props.handleFavoritesClick(movie)}
+				className="overlay d-flex align-items-center justify-content-center">
                 <FavoriteComponent />
             </div>
         </div>
