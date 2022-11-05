@@ -10,6 +10,7 @@ import RemoveFavorites from './components/RemoveFavorites';
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
   const getSearchedMovies = async (searchValue) => {
@@ -17,7 +18,6 @@ const App = () => {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_DB_Key}&language=en-US&page=1&include_adult=false&query=${searchValue}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data.results);
     // Conditional to check if input has a value
     if(data.results) {
       setMovies(data.results);
