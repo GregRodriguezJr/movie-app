@@ -24,10 +24,23 @@ const App = () => {
     };
   }
 
+  // API call to moviedb to get current popular movies
+  const getPopularMovies = async () => {
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_DB_Key}&language=en-US&page=1`;
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data.results);
+  }
+
   // When search value changes getSearchedMovies is ran
   useEffect(() => {
     getSearchedMovies(searchValue);
   }, [searchValue]);
+
+  // Onload run function only once
+  useEffect(() => {
+    getPopularMovies();
+  }, []);
 
   const addFavoriteMovie = (movie) => {
     const newFavoriteList = [...favorites, movie];
