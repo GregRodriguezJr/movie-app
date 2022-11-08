@@ -52,3 +52,9 @@ img {
   color: yellow;
   font-weight: 500;
 }
+
+.bi-info-circle:hover {
+  color: yellow;
+  font-weight: 500;
+  scale: 1.2;
+}
