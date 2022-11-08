@@ -45,16 +45,16 @@ img {
   padding: 5px;
 }
 
-.vote-num {
+.rating {
   background: black;
   border-radius: 50%;
   padding: .25em;
-  color: yellow;
   font-weight: 500;
 }
 
 .bi-info-circle:hover {
-  color: yellow;
-  font-weight: 500;
-  scale: 1.2;
+  font-weight: 700;
+  scale: 1.3;
+  background: black;
+  border-radius: 50%;
 }
