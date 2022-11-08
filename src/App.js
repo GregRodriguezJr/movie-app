@@ -30,6 +30,7 @@ const App = () => {
     const response = await fetch(url);
     const data = await response.json();
     setPopularMovies(data.results);
+    console.log(data.results);
   }
 
   // When search value changes getSearchedMovies is ran

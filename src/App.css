@@ -36,3 +36,11 @@ img {
   padding: 25px;
   text-align: center;
 }
+
+.header-overlay {
+  position: absolute;
+  background: transparent;
+  width: 100%;
+  top: 0;
+  padding: 5px;
+}
