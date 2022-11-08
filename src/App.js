@@ -29,7 +29,7 @@ const App = () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_DB_Key}&language=en-US&page=1`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data.results);
+    setPopularMovies(data.results);
   }
 
   // When search value changes getSearchedMovies is ran
@@ -58,11 +58,27 @@ const App = () => {
     <div className='container-fluid'>
         <div className='d-flex align-items-center justify-content-between my-3'>
             < MovieListHeading 
-                heading = {"Search Results"} 
+                heading = {"Popular"} 
             />
             < SearchBox 
                 searchValue={searchValue} 
                 setSearchValue={setSearchValue} 
+            />
+        </div>
+
+        {/* Popular Movies Section */}
+        <div className="d-flex justify-content-start movie-app-row">
+            < MovieList 
+                movies={popularMovies} 
+                favComponent={AddFavorites} 
+                handleFavoritesClick={addFavoriteMovie} 
+            />
+        </div>
+
+        {/* Search Results Section */}
+        <div className='d-flex align-items-center justify-content-between my-3'>
+            < MovieListHeading 
+                heading = {"Search Results"} 
             />
         </div>
         <div className="d-flex justify-content-start movie-app-row">
@@ -72,6 +88,8 @@ const App = () => {
                 handleFavoritesClick={addFavoriteMovie} 
             />
         </div>
+
+        {/* Favorite Movies Section */}
         <div className='d-flex align-items-center justify-content-between my-3'>
             < MovieListHeading 
                 heading = {"Favorites"} 
