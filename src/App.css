@@ -44,3 +44,11 @@ img {
   top: 0;
   padding: 5px;
 }
+
+.vote-num {
+  background: black;
+  border-radius: 50%;
+  padding: .25em;
+  color: yellow;
+  font-weight: 500;
+}
