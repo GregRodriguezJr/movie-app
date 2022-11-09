@@ -44,6 +44,10 @@ const App = () => {
   }, []);
 
   const addFavoriteMovie = (movie) => {
+    // Conditional to prevent duplicate movies
+    if(favorites.includes(movie)) {
+      return;
+    }
     const newFavoriteList = [...favorites, movie];
     setFavorites(newFavoriteList);
   }
