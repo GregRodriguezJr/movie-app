@@ -57,52 +57,43 @@ const App = () => {
   
   return (
     <div className='container-fluid'>
-        <div className='d-flex align-items-center justify-content-between my-3'>
-            < MovieListHeading 
-                heading = {"Popular"} 
-            />
-            < SearchBox 
-                searchValue={searchValue} 
-                setSearchValue={setSearchValue} 
-            />
-        </div>
 
-        {/* Popular Movies Section */}
-        <div className="d-flex justify-content-start movie-app-row">
-            < MovieList 
-                movies={popularMovies} 
-                favComponent={AddFavorites} 
-                handleFavoritesClick={addFavoriteMovie} 
-            />
-        </div>
+      {/* Header */}
 
-        {/* Search Results Section */}
-        <div className='d-flex align-items-center justify-content-between my-3'>
-            < MovieListHeading 
-                heading = {"Search Results"} 
-            />
-        </div>
-        <div className="d-flex justify-content-start movie-app-row">
-            < MovieList 
-                movies={movies} 
-                favComponent={AddFavorites} 
-                handleFavoritesClick={addFavoriteMovie} 
-            />
-        </div>
+      <div className='d-flex align-items-center justify-content-center flex-wrap my-3'>
+        < MovieListHeading heading = {"Movie App"} />
+        < SearchBox 
+          searchValue={searchValue} 
+          setSearchValue={setSearchValue} 
+        />
+      </div>
 
-        {/* Favorite Movies Section */}
-        <div className='d-flex align-items-center justify-content-between my-3'>
-            < MovieListHeading 
-                heading = {"Favorites"} 
-            />
-        </div>
-        <div className="d-flex justify-content-start movie-app-row">
-            < MovieList 
-                movies = {favorites} 
-                favComponent={RemoveFavorites} 
-                handleFavoritesClick={removeFavoriteMovie} 
-            />
-        </div>
+      {/* Popular Movies Section */} 
+
+      < MovieListHeading heading = {"Popular"} />
+      < MovieList 
+          movies={popularMovies} 
+          favComponent={AddFavorites} 
+          handleFavoritesClick={addFavoriteMovie} 
+      />
+
+      {/* Search Results Section */}
+
+      < MovieListHeading heading = {"Search Results"} />
+      < MovieList 
+          movies={movies} 
+          favComponent={AddFavorites} 
+          handleFavoritesClick={addFavoriteMovie} 
+      />
+
+      {/* Favorite Movies Section */}
+
+      < MovieListHeading heading = {"Favorites"} />
+      < MovieList 
+          movies = {favorites} 
+          favComponent={RemoveFavorites} 
+          handleFavoritesClick={removeFavoriteMovie} 
+      />
     </div>
   );
 }

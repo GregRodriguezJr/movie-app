@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchBox = (props) => {
   return (
-    <div>
+    <div className='mx-3'>
         <input 
           type="text" 
           className='form-control' 

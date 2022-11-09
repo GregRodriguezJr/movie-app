@@ -8,8 +8,9 @@ body {
   flex-wrap: nowrap;
 }
 
+/* Poster Image */
 img {
-  max-width: 250px;
+  max-width: 200px;
 }
 
 .image-container {
@@ -58,3 +59,5 @@ img {
   background: black;
   border-radius: 50%;
 }
+
+/* #918E9B */
