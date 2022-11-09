@@ -42,7 +42,7 @@ img {
   position: absolute;
   background: transparent;
   width: 100%;
-  top: 0;
+  top: 5px;
   padding: 5px;
 }
 
