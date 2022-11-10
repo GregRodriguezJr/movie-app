@@ -63,7 +63,7 @@ const App = () => {
 
       {/* Header */}
 
-      <div className='d-flex align-items-center justify-content-center flex-wrap my-3'>
+      <div className='d-flex align-items-center justify-content-center flex-wrap my-2'>
         < MovieListHeading heading = {"Movie App"} />
         < SearchBox 
           searchValue={searchValue} 
