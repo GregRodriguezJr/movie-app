@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function DetailsModal() {
+function DetailsModal(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -21,18 +21,20 @@ function DetailsModal() {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-      >
+        >
         <Modal.Header closeButton>
-          <Modal.Title className='text-dark'>Modal title</Modal.Title>
+            <Modal.Title className='text-dark'>
+                {props.movie.title}
+            </Modal.Title>
         </Modal.Header>
         <Modal.Body className='text-dark'>
-          I will not close if you click outside me. Don't even try to press
-          escape key.
+            {props.movie.overview} 
+            <p className='text-dark'>Release Date: {props.movie.release_date}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
+            </Button>
         </Modal.Footer>
       </Modal>
     </>
