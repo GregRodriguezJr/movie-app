@@ -5,12 +5,15 @@ import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
 import AddFavorites from './components/AddFavorites';
 import RemoveFavorites from './components/RemoveFavorites';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { db } from './firebase';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [favMovies, setFavMovies] = useState([]);
 
   const getSearchedMovies = async (searchValue) => {
     // Pass searchValue from user input to enter into search query
@@ -32,6 +35,19 @@ const App = () => {
     setPopularMovies(data.results);
     console.log(data.results);
   }
+
+  // Read favorites from firebase
+  useEffect(()=> {
+    const q = query(collection(db,'favorite_movies'))
+    const unsubscribe = onSnapshot(q, (QuerySnapshot)=> {
+      let favMoviesArr = []
+      QuerySnapshot.forEach((doc)=>{
+        favMoviesArr.push({...doc.data(), id: doc.id})
+      });
+      setFavMovies(favMoviesArr)
+    });
+    return () => unsubscribe;
+  },[])
 
   // When search value changes getSearchedMovies is ran
   useEffect(() => {
@@ -94,7 +110,7 @@ const App = () => {
 
       < MovieListHeading heading = {"Favorites"} />
       < MovieList 
-          movies = {favorites} 
+          movies = {favMovies} 
           favComponent={RemoveFavorites} 
           handleFavoritesClick={removeFavoriteMovie} 
       />
