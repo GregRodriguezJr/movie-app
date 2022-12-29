@@ -7,7 +7,7 @@ const FavoriteComponent = props.favComponent;
 return (
   <div className="d-flex justify-content-start movie-app-row">
     {props.movies.map((movie, index) => (
-        <div className="m-2 image-container">
+        <div className="m-2 image-container" key={movie.id}>
             <div className="header-overlay">
               <PosterHeader movie={movie}/>
             </div>
