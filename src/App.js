@@ -20,10 +20,12 @@ const App = () => {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_DB_Key}&language=en-US&page=1&include_adult=false&query=${searchValue}`;
     const response = await fetch(url);
     const data = await response.json();
-    // Conditional to check if input has a value
-    if(data.results) {
-      setMovies(data.results);
-    };
+    const resultsList = data.results;
+    // Filter out movies with no poster
+    const filteredList = resultsList.filter(
+      item => item.poster_path !== null
+    );
+    setMovies(filteredList);
   }
 
   // API call to moviedb to get current popular movies
