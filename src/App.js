@@ -5,9 +5,8 @@ import MovieListHeading from "./components/MovieListHeading";
 import SearchBox from "./components/SearchBox";
 import AddFavoritesIcon from "./components/AddFavoritesIcon";
 import RemoveFavoritesIcon from "./components/RemoveFavoritesIcon";
-import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "./firebase";
-import { addFavoriteMovie, removeFavoriteMovie } from "./Crud";
+import { addFavoriteMovie, getFavorites, removeFavoriteMovie } from "./Crud";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -40,26 +39,18 @@ const App = () => {
 
   // Read favorites from firebase
   useEffect(() => {
-    const q = query(collection(db, "favorite_movies"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let favMoviesArr = [];
-      QuerySnapshot.forEach((doc) => {
-        favMoviesArr.push({ ...doc.data(), id: doc.id });
-      });
-      setFavMovies(favMoviesArr);
-    });
-    return () => unsubscribe;
+    getFavorites(db,setFavMovies);
   }, []);
 
   // When search value changes getSearchedMovies is ran
-  // useEffect(() => {
-  //   getSearchedMovies(searchValue);
-  // }, [searchValue]);
+  useEffect(() => {
+    getSearchedMovies(searchValue);
+  }, [searchValue]);
 
   // Onload run function only once
-  // useEffect(() => {
-  //   getPopularMovies();
-  // }, []);
+  useEffect(() => {
+    getPopularMovies();
+  }, []);
 
   return (
     <div className="container">
