@@ -19,3 +19,7 @@ export const addFavoriteMovie = async (movie) => {
         alert(`Movie "${movie.title}" already exists in favorites.`)
     }
   };
+
+export const removeFavoriteMovie = (movie) => {
+    
+  };

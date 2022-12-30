@@ -3,7 +3,7 @@ import PosterHeader from "./PosterHeader";
 
 const MovieList = (props) => {
 const baseImgUrl = "https://image.tmdb.org/t/p/w500";
-const FavoriteComponent = props.favComponent;
+const FavoriteComponent = props.favComponentIcon;
 return (
   <div className="d-flex justify-content-start movie-app-row">
     {props.movies.map((movie, index) => (

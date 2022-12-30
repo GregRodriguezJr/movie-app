@@ -4,11 +4,10 @@ import MovieList from "./components/MovieList";
 import MovieListHeading from "./components/MovieListHeading";
 import SearchBox from "./components/SearchBox";
 import AddFavoritesIcon from "./components/AddFavoritesIcon";
-import RemoveFavorites from "./components/RemoveFavorites";
+import RemoveFavoritesIcon from "./components/RemoveFavoritesIcon";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "./firebase";
-import { async } from "@firebase/util";
-import { addFavoriteMovie } from "./Crud";
+import { addFavoriteMovie, removeFavoriteMovie } from "./Crud";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -54,21 +53,14 @@ const App = () => {
   }, []);
 
   // When search value changes getSearchedMovies is ran
-  useEffect(() => {
-    getSearchedMovies(searchValue);
-  }, [searchValue]);
+  // useEffect(() => {
+  //   getSearchedMovies(searchValue);
+  // }, [searchValue]);
 
   // Onload run function only once
-  useEffect(() => {
-    getPopularMovies();
-  }, []);
-
-  const removeFavoriteMovie = (movie) => {
-    const newFavoriteList = favorites.filter(
-      (favorite) => favorite.id !== movie.id
-    );
-    setFavorites(newFavoriteList);
-  };
+  // useEffect(() => {
+  //   getPopularMovies();
+  // }, []);
 
   return (
     <div className="container">
@@ -83,7 +75,7 @@ const App = () => {
       <MovieListHeading heading={"Search Results"} />
       <MovieList
         movies={movies}
-        favComponent={AddFavoritesIcon}
+        favComponentIcon={AddFavoritesIcon}
         handleFavoritesClick={addFavoriteMovie}
       />
       <hr></hr>
@@ -92,7 +84,7 @@ const App = () => {
       <MovieListHeading heading={"Favorites"} />
       <MovieList
         movies={favMovies}
-        favComponent={RemoveFavorites}
+        favComponentIcon={RemoveFavoritesIcon}
         handleFavoritesClick={removeFavoriteMovie}
       />
       <hr></hr>
@@ -101,7 +93,7 @@ const App = () => {
       <MovieListHeading heading={"Popular"} />
       <MovieList
         movies={popularMovies}
-        favComponent={AddFavoritesIcon}
+        favComponentIcon={AddFavoritesIcon}
         handleFavoritesClick={addFavoriteMovie}
       />
 

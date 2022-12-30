@@ -1,6 +1,6 @@
 import React from "react";
 
-const RemoveFavorites = () => {
+const RemoveFavoritesIcon = () => {
     return (
         <>
             <span className="text-light mx-2">Remove from Favorites</span>
@@ -17,4 +17,4 @@ const RemoveFavorites = () => {
     )
 }
 
-export default RemoveFavorites;
+export default RemoveFavoritesIcon;
