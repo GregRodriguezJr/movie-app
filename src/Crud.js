@@ -1,6 +1,7 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "./firebase";
 
+// Create
 export const addFavoriteMovie = async (movie) => {
     // Query to search for a movie with the same title
     const q = query(collection(db, "favorite_movies"), where("title", "==", movie.title));
@@ -20,6 +21,7 @@ export const addFavoriteMovie = async (movie) => {
     }
   };
 
-export const removeFavoriteMovie = (movie) => {
-    
+// Delete
+export const removeFavoriteMovie = async (movie) => {
+    await deleteDoc(doc(db, "favorite_movies", movie.id));
   };

@@ -11,7 +11,6 @@ import { addFavoriteMovie, removeFavoriteMovie } from "./Crud";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
-  const [favorites, setFavorites] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [favMovies, setFavMovies] = useState([]);
