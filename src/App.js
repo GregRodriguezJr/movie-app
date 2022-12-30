@@ -7,6 +7,7 @@ import AddFavoritesIcon from "./components/AddFavoritesIcon";
 import RemoveFavoritesIcon from "./components/RemoveFavoritesIcon";
 import { db } from "./firebase";
 import { addFavoriteMovie, getFavorites, removeFavoriteMovie } from "./Crud";
+import { getPopularMovies } from "./apiRequest";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -28,14 +29,9 @@ const App = () => {
   };
 
   // API call to moviedb to get current popular movies
-  const getPopularMovies = async () => {
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_DB_Key}&language=en-US&page=1&include_adult=false`;
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data.results);
-    setPopularMovies(data.results);
-    console.log(data.results);
-  };
+  useEffect(() => {
+    getPopularMovies(setPopularMovies);
+  }, []);
 
   // Read favorites from firebase
   useEffect(() => {
