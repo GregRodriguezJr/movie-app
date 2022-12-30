@@ -7,7 +7,7 @@ import AddFavoritesIcon from "./components/AddFavoritesIcon";
 import RemoveFavoritesIcon from "./components/RemoveFavoritesIcon";
 import { db } from "./firebase";
 import { addFavoriteMovie, getFavorites, removeFavoriteMovie } from "./Crud";
-import { getPopularMovies } from "./apiRequest";
+import { getPopularMovies, getSearchedMovies } from "./apiRequest";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -15,22 +15,13 @@ const App = () => {
   const [searchValue, setSearchValue] = useState("");
   const [favMovies, setFavMovies] = useState([]);
 
-  const getSearchedMovies = async (searchValue) => {
-    // Pass searchValue from user input to enter into search query
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_DB_Key}&language=en-US&page=1&include_adult=false&query=${searchValue}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    const resultsList = data.results;
-    // Filter out movies with no poster
-    const filteredList = resultsList.filter(
-      (item) => item.poster_path !== null
-    );
-    setMovies(filteredList);
-  };
-
   // API call to moviedb to get current popular movies
   useEffect(() => {
-    getPopularMovies(setPopularMovies);
+    const getPopularData = async () => {
+      const popularData =  await getPopularMovies();
+      setPopularMovies(popularData);
+    }
+    getPopularData();
   }, []);
 
   // Read favorites from firebase
@@ -40,13 +31,9 @@ const App = () => {
 
   // When search value changes getSearchedMovies is ran
   useEffect(() => {
-    getSearchedMovies(searchValue);
+    if(!searchValue) return;
+    getSearchedMovies(searchValue, setMovies);
   }, [searchValue]);
-
-  // Onload run function only once
-  useEffect(() => {
-    getPopularMovies();
-  }, []);
 
   return (
     <div className="container">
