@@ -1,14 +1,21 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "./firebase";
 
-  // Create new favorite movie in firebase
 export const addFavoriteMovie = async (movie) => {
-    // TODO! Conditional to prevent duplicate movies
-    await addDoc(collection(db, "favorite_movies"), {
-      title: movie.title,
-      overview: movie.overview,
-      vote_average: movie.vote_average,
-      poster_path: movie.poster_path,
-      release_date: movie.release_date,
-    });
+    // Query to search for a movie with the same title
+    const q = query(collection(db, "favorite_movies"), where("title", "==", movie.title));
+    // Execute the query
+    const querySnapshot = await getDocs(q);
+    // If the movie doesn't exist, add it to the firebase collection
+    if(querySnapshot.empty) {
+        await addDoc(collection(db, "favorite_movies"), {
+          title: movie.title,
+          overview: movie.overview,
+          vote_average: movie.vote_average,
+          poster_path: movie.poster_path,
+          release_date: movie.release_date,
+        });
+    } else {
+        alert(`Movie "${movie.title}" already exists in favorites.`)
+    }
   };
