@@ -36,28 +36,28 @@ const App = () => {
     getSearchedMovies(searchValue, setMovies);
   }, [searchValue]);
 
-  const clearSearch = () => {
-    setSearchValue("");
-  }
-
   return (
     <div className="container">
 
       {/* Header */}
       <div className="d-flex align-items-center justify-content-center flex-wrap my-4">
-        <h1 className="m-0">Movie App</h1>
+        <h1>Movie App</h1>
         <SearchBox value={searchValue} setSearchValue={setSearchValue} />
-        <Button className="m-2" onClick={clearSearch}>Clear</Button>
+        <Button className="my-3" onClick={()=> setSearchValue("")}>Clear Results</Button>
       </div>
 
-      {/* Search Results Section */}
-      <MovieListHeading heading={"Search Results"} />
-      <MovieList
-        movies={movies}
-        favComponentIcon={AddFavoritesIcon}
-        handleFavoritesClick={addFavoriteMovie}
-      />
-      <hr></hr>
+      {/* Search Results Section will render if input changes */}
+      {searchValue && 
+        <>
+          <MovieListHeading heading={"Search Results"} />
+          <MovieList
+            movies={movies}
+            favComponentIcon={AddFavoritesIcon}
+            handleFavoritesClick={addFavoriteMovie}
+          />
+          <hr></hr>
+        </>
+      }
 
       {/* Favorite Movies Section */}
       <MovieListHeading heading={"Favorites"} />
