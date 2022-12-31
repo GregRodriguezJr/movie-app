@@ -8,6 +8,14 @@ function DetailsModal(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const dateFormat = (dateString) => {
+    const date = new Date(dateString);
+    const month = `0${date.getMonth() + 1}`.slice(-2);
+    const day = `0${date.getDate()}`.slice(-2);
+    const year = date.getFullYear();
+    return `${month}-${day}-${year}`;
+  }
+
   return (
     <>
         {/* Svg triggers modal to open instead of button */}
@@ -23,13 +31,13 @@ function DetailsModal(props) {
         keyboard={false}
         >
         <Modal.Header closeButton>
-            <Modal.Title className='text-dark'>
+            <Modal.Title className='text-primary'>
                 {props.movie.title}
             </Modal.Title>
         </Modal.Header>
         <Modal.Body className='text-dark'>
             {props.movie.overview} 
-            <p className='text-dark'>Release Date: {props.movie.release_date}</p>
+            <p className='text-secondary py-2'>Release Date: {dateFormat(props.movie.release_date)}</p>
         </Modal.Body>
         <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

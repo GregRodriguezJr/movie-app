@@ -6,7 +6,7 @@ const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 const FavoriteComponentIcon = props.favComponentIcon;
 return (
   <div className="d-flex justify-content-start movie-app-row">
-    {props.movies.map((movie, index) => (
+    {props.movies.map((movie) => (
         <div className="m-2 image-container" key={movie.id}>
             <div className="header-overlay">
               <PosterHeader movie={movie}/>
