@@ -15,21 +15,27 @@ const App = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [favMovies, setFavMovies] = useState([]);
-  const [ horror, setHorror] = useState([]);
+  const [action, setAction] = useState([]);
+  const [comedy, setComedy] = useState([]);
+  const [horror, setHorror] = useState([]);
+  const [drama, setDrama] = useState([]);
 
   // API call to moviedb to get current popular movies
-  // useEffect(() => {
-  //   const getPopularData = async () => {
-  //     const popularData =  await getPopularMovies();
-  //     setPopularMovies(popularData);
-  //   }
-  //   getPopularData();
-  // }, []);
+  useEffect(() => {
+    const getPopularData = async () => {
+      const popularData =  await getPopularMovies();
+      setPopularMovies(popularData);
+    }
+    getPopularData();
+  }, []);
 
   useEffect(() => {
     // Read favorites from firebase
     getFavorites(db,setFavMovies);
-    // 
+    // API call for genres
+    getMoviesByGenre(28, setAction);
+    getMoviesByGenre(35, setComedy);
+    getMoviesByGenre(18, setDrama);
     getMoviesByGenre(27, setHorror);
   }, []);
 
@@ -80,10 +86,34 @@ const App = () => {
       />
       <hr></hr>
 
-      {/* Popular Movies Section */}
+      {/* Action Movies Section */}
+      <MovieListHeading heading={"Action"} />
+      <MovieList
+        movies={action}
+        favComponentIcon={AddFavoritesIcon}
+        handleFavoritesClick={addFavoriteMovie}
+      />
+
+      {/* Comedy Movies Section */}
+      <MovieListHeading heading={"Comedy"} />
+      <MovieList
+        movies={comedy}
+        favComponentIcon={AddFavoritesIcon}
+        handleFavoritesClick={addFavoriteMovie}
+      />
+
+      {/* Horror Movies Section */}
       <MovieListHeading heading={"Horror"} />
       <MovieList
         movies={horror}
+        favComponentIcon={AddFavoritesIcon}
+        handleFavoritesClick={addFavoriteMovie}
+      />
+
+      {/* Drama Movies Section */}
+      <MovieListHeading heading={"Drama"} />
+      <MovieList
+        movies={drama}
         favComponentIcon={AddFavoritesIcon}
         handleFavoritesClick={addFavoriteMovie}
       />
