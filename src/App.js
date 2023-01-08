@@ -7,7 +7,7 @@ import AddFavoritesIcon from "./components/AddFavoritesIcon";
 import RemoveFavoritesIcon from "./components/RemoveFavoritesIcon";
 import { db } from "./firebase";
 import { addFavoriteMovie, getFavorites, removeFavoriteMovie } from "./Crud";
-import { getPopularMovies, getSearchedMovies } from "./apiRequest";
+import { getMoviesByGenre, getPopularMovies, getSearchedMovies } from "./apiRequest";
 import { Button } from "react-bootstrap";
 
 const App = () => {
@@ -15,19 +15,22 @@ const App = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [favMovies, setFavMovies] = useState([]);
+  const [ horror, setHorror] = useState([]);
 
   // API call to moviedb to get current popular movies
-  useEffect(() => {
-    const getPopularData = async () => {
-      const popularData =  await getPopularMovies();
-      setPopularMovies(popularData);
-    }
-    getPopularData();
-  }, []);
+  // useEffect(() => {
+  //   const getPopularData = async () => {
+  //     const popularData =  await getPopularMovies();
+  //     setPopularMovies(popularData);
+  //   }
+  //   getPopularData();
+  // }, []);
 
-  // Read favorites from firebase
   useEffect(() => {
+    // Read favorites from firebase
     getFavorites(db,setFavMovies);
+    // 
+    getMoviesByGenre(27, setHorror);
   }, []);
 
   // When search value changes getSearchedMovies is ran
@@ -75,7 +78,16 @@ const App = () => {
         favComponentIcon={AddFavoritesIcon}
         handleFavoritesClick={addFavoriteMovie}
       />
+      <hr></hr>
 
+      {/* Popular Movies Section */}
+      <MovieListHeading heading={"Horror"} />
+      <MovieList
+        movies={horror}
+        favComponentIcon={AddFavoritesIcon}
+        handleFavoritesClick={addFavoriteMovie}
+      />
+      
     </div>
   );
 };

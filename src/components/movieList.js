@@ -11,7 +11,7 @@ return (
             <div className="header-overlay">
               <PosterHeader movie={movie}/>
             </div>
-            <img src={baseImgUrl + movie.poster_path} />
+            <img src={baseImgUrl + movie.poster_path} alt={`${movie.title} poster`}/>
             <div 
 				      onClick={() => props.handleFavoritesClick(movie)}
 				      className="overlay d-flex align-items-center justify-content-center">
