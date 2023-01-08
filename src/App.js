@@ -21,13 +21,13 @@ const App = () => {
   const [drama, setDrama] = useState([]);
 
   // API call to moviedb to get current popular movies
-  // useEffect(() => {
-  //   const getPopularData = async () => {
-  //     const popularData =  await getPopularMovies();
-  //     setPopularMovies(popularData);
-  //   }
-  //   getPopularData();
-  // }, []);
+  useEffect(() => {
+    const getPopularData = async () => {
+      const popularData =  await getPopularMovies();
+      setPopularMovies(popularData);
+    }
+    getPopularData();
+  }, []);
 
   useEffect(() => {
     // Read favorites from firebase
