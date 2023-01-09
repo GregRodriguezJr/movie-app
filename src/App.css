@@ -13,6 +13,12 @@ img {
   max-width: 175px;
 }
 
+@media (max-width: 425px ) {
+  img {
+    max-width: 100px;
+  }
+}
+
 .image-container {
   position: relative;
   transition: transform 0.2s;

@@ -46,14 +46,21 @@ const App = () => {
   }, [searchValue]);
 
   return (
-    <div className="container">
+    <div className="container py-4 pt-lg-0">
 
       {/* Header */}
-      <div className="d-flex align-items-center justify-content-center flex-wrap my-4">
-        <h1>Movie App</h1>
-        <SearchBox value={searchValue} setSearchValue={setSearchValue} />
-        <Button className="my-3" onClick={()=> setSearchValue("")}>Clear Results</Button>
+      <div className="d-flex align-items-center justify-content-evenly flex-wrap">
+        <img 
+          src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+          className="mx-2"
+        />
+        <div className="d-flex align-items-center flex-wrap my-4">
+          <h1 className="mx-3">Movie App</h1>
+          <SearchBox value={searchValue} setSearchValue={setSearchValue} />
+          <Button className="m-3" onClick={()=> setSearchValue("")}>Clear Results</Button>
+        </div>
       </div>
+      <hr></hr>
 
       {/* Search Results Section will render if input changes */}
       {searchValue && 
@@ -93,6 +100,7 @@ const App = () => {
         favComponentIcon={AddFavoritesIcon}
         handleFavoritesClick={addFavoriteMovie}
       />
+      <hr></hr>
 
       {/* Comedy Movies Section */}
       <MovieListHeading heading={"Comedy"} />
@@ -101,6 +109,7 @@ const App = () => {
         favComponentIcon={AddFavoritesIcon}
         handleFavoritesClick={addFavoriteMovie}
       />
+      <hr></hr>
 
       {/* Horror Movies Section */}
       <MovieListHeading heading={"Horror"} />
@@ -109,6 +118,7 @@ const App = () => {
         favComponentIcon={AddFavoritesIcon}
         handleFavoritesClick={addFavoriteMovie}
       />
+      <hr></hr>
 
       {/* Drama Movies Section */}
       <MovieListHeading heading={"Drama"} />
