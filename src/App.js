@@ -33,10 +33,10 @@ const App = () => {
     // Read favorites from firebase
     getFavorites(db,setFavMovies);
     // API call for genres
-    // getMoviesByGenre(28, setAction);
-    // getMoviesByGenre(35, setComedy);
-    // getMoviesByGenre(18, setDrama);
-    // getMoviesByGenre(27, setHorror);
+    getMoviesByGenre(28, setAction);
+    getMoviesByGenre(35, setComedy);
+    getMoviesByGenre(18, setDrama);
+    getMoviesByGenre(27, setHorror);
   }, []);
 
   // When search value changes getSearchedMovies is ran

@@ -20,7 +20,6 @@ export const getSearchedMovies = async (searchValue, setMovies) => {
 export const getMoviesByGenre = async (genreId, setter) => {
   const url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=${genreId}&language=en-US`;
   const { data } = await axios.get(url);
-  console.log(data.results);
   setter(data.results);
 };
 
