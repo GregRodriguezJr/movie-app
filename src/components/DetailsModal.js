@@ -64,6 +64,7 @@ function DetailsModal(props) {
           {trailerKey ? (
             <a
               href={`https://www.youtube.com/watch?v=${trailerKey}`}
+              rel='noreferrer'
               target="_blank"
               className="py-2"
               onClick={handleClose}

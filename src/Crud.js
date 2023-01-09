@@ -27,6 +27,7 @@ export const addFavoriteMovie = async (movie) => {
       vote_average: movie.vote_average,
       poster_path: movie.poster_path,
       release_date: movie.release_date,
+      id: movie.id
     });
   } else {
     alert(`Movie "${movie.title}" already exists in favorites.`);
@@ -39,7 +40,7 @@ export const getFavorites = (db, setFavMovies) => {
   const unsubscribe = onSnapshot(q, (querySnapshot) => {
     let favArray = [];
     querySnapshot.forEach((doc) => {
-      favArray.push({ ...doc.data(), id: doc.id });
+      favArray.push({ ...doc.data(), docId: doc.id});
     });
     setFavMovies(favArray);
   });
@@ -48,5 +49,5 @@ export const getFavorites = (db, setFavMovies) => {
 
 // Delete
 export const removeFavoriteMovie = async (movie) => {
-  await deleteDoc(doc(db, "favorite_movies", movie.id));
+  await deleteDoc(doc(db, "favorite_movies", movie.docId));
 };
